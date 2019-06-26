@@ -9,3 +9,8 @@ net.load_state_dict(saved, strict = False)
 
 # print no of trainiable parameters
 print("No of parameters: ", sum(p.numel() for p in net.parameters() if p.requires_grad))
+
+# freeze some layers
+for name, param in net.named_parameters():
+  if 'fc' not in name:
+    param.requires_grad = False
